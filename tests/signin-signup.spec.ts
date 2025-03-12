@@ -9,6 +9,9 @@ test.describe('SignIn Flow', () => {
     let homePage: HomePage
     
     test.beforeEach(async ({page}) => {
+    // test.beforeAll(async ({browser}) => {
+        // const context = await browser.newContext();
+        // const page = await context.newPage();
         loginPage = new LoginPage(page)
         homePage = new HomePage(page)
         await homePageLink(page)
@@ -39,9 +42,8 @@ test.describe('SignUp Flow', () => {
     })
 
     test('Positive scenario for signup', async ({page}) => {
-        const randomLastName = `Test_${Date.now()}`;
-        const randomUserName = `user_${Date.now()}`;
-        await signUpPage.signUp('Auto', randomLastName, randomUserName, 'auto_tests@gmail.com', 'Pwd4test!')
+        const timestamp = Date.now();
+        await signUpPage.signUp('Auto', `Test_${timestamp}`, `user_${timestamp}`, `autotest_${timestamp}@gmail.com`, 'Pwd4test!')
         await expect(homePage.welcomeTitleAfterSignUp).toBeVisible()
     })
 })
