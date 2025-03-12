@@ -5,7 +5,7 @@ const config: PlaywrightTestConfig = {
     retries: 0,
     use: {
         headless: false,
-        viewport: { width: 1280, height: 720 },
+        // viewport: { width: 1280, height: 720 },
         actionTimeout: 15000,
         ignoreHTTPSErrors: true,
         video: 'retain-on-failure',

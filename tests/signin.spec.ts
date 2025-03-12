@@ -1,11 +1,11 @@
 import { test, expect } from '@playwright/test'
 import { LoginPage } from '../page-objects/LoginPage'
-import { homePageLink } from '../helpers'
+import { homePageLink } from '../support/helpers'
 
 test.describe('SignIn Flow', () => {
     let loginPage: LoginPage
     
-    test.beforeEach(async ({page}) => {
+    test.beforeAll(async ({page}) => {
         loginPage = new LoginPage(page)
         await homePageLink(page)
     })
