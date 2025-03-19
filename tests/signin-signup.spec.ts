@@ -3,15 +3,13 @@ import { LoginPage } from '../page-objects/LoginPage'
 import { homePageLink } from '../support/helpers'
 import { HomePage } from '../page-objects/HomePage'
 import { SignUpPage } from '../page-objects/SignUpPage'
+import { User } from '../support/UserModel'
 
 test.describe('SignIn Flow', () => {
     let loginPage: LoginPage
     let homePage: HomePage
     
     test.beforeEach(async ({page}) => {
-    // test.beforeAll(async ({browser}) => {
-        // const context = await browser.newContext();
-        // const page = await context.newPage();
         loginPage = new LoginPage(page)
         homePage = new HomePage(page)
         await homePageLink(page)
@@ -24,7 +22,7 @@ test.describe('SignIn Flow', () => {
 
     test('Positive scenario for login', async ({page}) => {
         await loginPage.signIn('oksana_test1', 'Pwd4test!')
-        await expect(homePage.welcomeTitleAfterLogin).toBeVisible()
+        await expect(homePage.welcomeTitle).toBeVisible()
     })
 })
 
@@ -42,8 +40,9 @@ test.describe('SignUp Flow', () => {
     })
 
     test('Positive scenario for signup', async ({page}) => {
-        const timestamp = Date.now();
-        await signUpPage.signUp('Auto', `Test_${timestamp}`, `user_${timestamp}`, `autotest_${timestamp}@gmail.com`, 'Pwd4test!')
-        await expect(homePage.welcomeTitleAfterSignUp).toBeVisible()
+        const randomUser = User.createUser();
+        await signUpPage.signUp(randomUser.firstname, randomUser.lastname, randomUser.username, randomUser.useremail, randomUser.userpassword)
+        await signUpPage.selectDropdownOptions(randomUser.user_role,randomUser.usage_reason)
+        await expect(homePage.welcomeTitle).toBeVisible()
     })
 })
