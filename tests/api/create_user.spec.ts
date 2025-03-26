@@ -3,7 +3,7 @@ import { User } from '../../support/Models/User'
 
 test('Create user for signup', async ({ request }) => {
     const newUser = User.newUser();
-    const response = await request.post('https://gitlab.testautomate.me/api/v4/users', {
+    const createUser = await request.post('https://gitlab.testautomate.me/api/v4/users', {
         headers: {
             'Accept': 'application/json',
             'Authorization': 'Bearer FKzy_BpV5wAybKf7Z9JX',
@@ -17,8 +17,8 @@ test('Create user for signup', async ({ request }) => {
             "skip_confirmation": true
         }
     });
-    expect(response.status()).toBe(201);
-    const responseBody = await response.json();
+    expect(createUser.status()).toBe(201);
+    const responseBody = await createUser.json();
     expect(responseBody.username).toBe(newUser.username);
 
     const getUser = await request.get(`https://gitlab.testautomate.me/api/v4/users/${responseBody.id}`, {
