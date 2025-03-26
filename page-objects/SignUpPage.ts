@@ -1,5 +1,4 @@
 import { expect, Locator, Page } from "@playwright/test";
-import { User } from "../support/UserModel";
 
 export class SignUpPage {
     readonly page: Page;

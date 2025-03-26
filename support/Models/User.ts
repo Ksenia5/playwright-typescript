@@ -11,7 +11,7 @@ export class User {
       public usage_reason: string
     ) {}
 
-    static createUser(): User {
+    static newUser(): User {
         const userpassword = 'Pwd4test!'
         const user_role = [
             'Software Developer', 
@@ -32,12 +32,16 @@ export class User {
             'I want to use GitLab CI with my existing repository', 
             'A different reason'
         ]
+        const firstname = faker.person.firstName();
+        const lastname = faker.person.lastName();
+        const username = `${firstname}.${lastname}`.toLowerCase();
+        const useremail = `${firstname}.${lastname}@gmail.com`
 
         return new User(
-          faker.person.firstName(),
-          faker.person.lastName(),
-          faker.internet.username(),
-          faker.internet.email(),
+          firstname,
+          lastname,
+          username,
+          useremail,
           userpassword,
           faker.helpers.arrayElement(user_role),
           faker.helpers.arrayElement(usage_reason)

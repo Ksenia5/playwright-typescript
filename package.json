@@ -11,7 +11,9 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@playwright/test": "^1.51.0",
+    "@playwright/test": "^1.51.1",
+    "fs-extra": "^11.3.0",
+    "playwright": "^1.51.1",
     "prettier": "^3.5.3"
   },
   "devDependencies": {
