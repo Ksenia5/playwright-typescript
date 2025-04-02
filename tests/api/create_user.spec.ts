@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 import { User } from '../../support/Models/User'
 
-test.only('Create user for signup', async ({ request }) => {
+test('Create user for signup', async ({ request }) => {
     const newUser = User.newUser();
     const response = await request.post('https://gitlab.testautomate.me/api/v4/users', {
         headers: {
