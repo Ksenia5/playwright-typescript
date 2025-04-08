@@ -10,10 +10,10 @@ export class MembersPage {
 
     constructor(page: Page) {
         this.page = page;
-        this.inviteMembersBtn = page.locator('.btn.btn-confirm.btn-md.gl-button.gl-mt-3.gl-sm-w-auto.gl-w-full.gl-sm-ml-3')
-        this.gitlabMemberInput = page.locator('.gl-token-selector-input.gl-bg-none.gl-font-regular.gl-font-base.gl-line-height-normal.gl-px-1.gl-h-auto.gl-text-gray-900.gl-border-none.gl-outline-none.gl-flex-grow-1')
+        this.inviteMembersBtn = page.locator('[data-test-id="invite-members-button"]')
+        this.gitlabMemberInput = page.locator('[data-qa-selector="members_token_select_input"]')
         this.roleInputField = page.locator('div[data-qa-selector="access_level_dropdown"]')
-        this.inviteButton = page.locator('.btn.js-modal-action-primary.btn-confirm.btn-md.gl-button')
+        this.inviteButton = page.locator('.js-modal-action-primary.btn-confirm.btn-md.gl-button')
         this.newMemberRole = page.locator('span.gl-new-dropdown-button-text:has-text("Developer")')
     }
 

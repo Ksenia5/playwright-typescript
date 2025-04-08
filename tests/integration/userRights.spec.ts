@@ -13,7 +13,7 @@ import { SettingsPage } from "../../page-objects/SettingsPage"
 import * as fs from 'fs-extra';
 
 
-test.only('Integration test for Gitlab user rights', async ({page, request}) => {
+test('Integration test for Gitlab user rights', async ({page, request}) => {
     let loginPage = new LoginPage(page)
     let signUpPage = new SignUpPage(page)
     let homePage = new HomePage(page)
@@ -135,5 +135,6 @@ test.only('Integration test for Gitlab user rights', async ({page, request}) => 
         await projectPage.projectDetailsPageBtn.click()
         await projectPage.settingNav.click()
         await settingsPage.deleteProject()
+        await expect(projectPage.successMessage).toContainText(`Project '${adminUser.firstname} ${adminUser.lastname} / ${createProjectPage.projectName}' is in the process of being deleted.`)
     });
 })
