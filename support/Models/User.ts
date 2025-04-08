@@ -32,10 +32,11 @@ export class User {
             'I want to use GitLab CI with my existing repository', 
             'A different reason'
         ]
+        const timestamp = Date.now()
         const firstname = faker.person.firstName();
         const lastname = faker.person.lastName();
-        const username = `${firstname}.${lastname}`.toLowerCase();
-        const useremail = `${firstname}.${lastname}@gmail.com`
+        const username = `${firstname}.${lastname}.${timestamp}`.toLowerCase();
+        const useremail = `${firstname}.${lastname}.${timestamp}@gmail.com`
 
         return new User(
           firstname,
