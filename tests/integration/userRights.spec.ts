@@ -13,7 +13,7 @@ import { SettingsPage } from "../../page-objects/SettingsPage"
 import * as fs from 'fs-extra';
 
 
-test('Integration test for Gitlab user rights', async ({page, request}) => {
+test.only('Integration test for Gitlab user rights', async ({page, request}) => {
     let loginPage = new LoginPage(page)
     let signUpPage = new SignUpPage(page)
     let homePage = new HomePage(page)
@@ -48,7 +48,7 @@ test('Integration test for Gitlab user rights', async ({page, request}) => {
     await test.step('3: Check that project created on API level', async () => {       
         const projectResponse = await request.get(`${baseUrl}/projects/${projectId}`, {
             headers: {
-                'Authorization': 'Bearer FKzy_BpV5wAybKf7Z9JX',
+                'Authorization': `Bearer ${process.env.API_KEY}`,
             }
         });
         expect(projectResponse.status()).toBe(200);
@@ -59,7 +59,7 @@ test('Integration test for Gitlab user rights', async ({page, request}) => {
         const response = await request.post(`${baseUrl}/users`, {
             headers: {
                 'Accept': 'application/json',
-                'Authorization': 'Bearer FKzy_BpV5wAybKf7Z9JX',
+                'Authorization': `Bearer ${process.env.API_KEY}`,
             },
             data: {
                 name: developerUser.firstname,
@@ -86,7 +86,7 @@ test('Integration test for Gitlab user rights', async ({page, request}) => {
     // await test.step('Check developer user in the project member list', async () => {
     //     const projectResponse = await request.get(`${baseUrl}/projects/${projectId}/members/`, {
     //         headers: {
-    //             'Authorization': 'Bearer FKzy_BpV5wAybKf7Z9JX',
+    //             'Authorization': `Bearer ${process.env.API_KEY}`,
     //         }
     //     });
     //     // expect((await projectResponse.json()).find(member => member.username === developerUser.username).username).toBe(developerUser.username);

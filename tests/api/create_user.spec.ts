@@ -6,7 +6,7 @@ test('Create user for signup', async ({ request }) => {
     const response = await request.post('https://gitlab.testautomate.me/api/v4/users', {
         headers: {
             'Accept': 'application/json',
-            'Authorization': 'Bearer FKzy_BpV5wAybKf7Z9JX',
+            'Authorization': `Bearer ${process.env.API_KEY}`,
         },
         data: {
             name: newUser.firstname,
@@ -22,7 +22,7 @@ test('Create user for signup', async ({ request }) => {
 
     const getUser = await request.get(`https://gitlab.testautomate.me/api/v4/users/${(await response.json()).id}`, {
         headers: {
-            'Authorization': 'Bearer FKzy_BpV5wAybKf7Z9JX',
+            'Authorization': `Bearer ${process.env.API_KEY}`,
         }
     });
     expect(getUser.status()).toBe(200);
